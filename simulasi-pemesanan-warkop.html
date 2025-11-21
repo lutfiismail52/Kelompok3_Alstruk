@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warung Kopi</title>
+    <style>
+      body {
+        background-color: #1f1f1f;
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Deklarasi dan inisialisasi variabel menu makanan
+      const menuMakanan = [
+        { nama: "Nasi Goreng", harga: 15000, jmlPesanan: 0 },
+        { nama: "Mie Ayam", harga: 10000, jmlPesanan: 0 },
+        { nama: "Bakso", harga: 13000, jmlPesanan: 0 },
+        { nama: "Sate Ayam", harga: 20000, jmlPesanan: 0 },
+      ];
+
+      // Deklarasi dan inisialisasi variabel menu minuman
+      const menuMinuman = [
+        { nama: "Kopi Hitam", harga: 5000, jmlPesanan: 0 },
+        { nama: "Kopi Susu", harga: 7000, jmlPesanan: 0 },
+        { nama: "Es Teh Tawar", harga: 4000, jmlPesanan: 0 },
+        { nama: "Es Teh Manis", harga: 5000, jmlPesanan: 0 },
+        { nama: "Jus Buah", harga: 8000, jmlPesanan: 0 },
+      ];
+
+      let namaPelanggan;
+      let pesananPelanggan;
+      let pesanan = [];
+      let jmlPesanan = 0;
+      let totalHarga = 0;
+      let pelangganInginPesan;
+      let urutanMemesan;
+      let pelangganMasihInginPesan = true;
+      let pilihanMetodePembayaran;
+
+      const metodePembayaran = [
+        "Cash",
+        "Transfer Bank",
+        "Dana",
+        "GoPay",
+        "ShopeePay",
+      ];
+
+      console.log("Selamat Datang di Warkop Kami! 😊🙏");
+      console.log("Berikut adalah daftar menu di warkop kami...");
+      console.log("\n");
+      console.log("====== MAKANAN ======");
+
+      // Mencetak isi menu makanan
+      menuMakanan.forEach((menu, index) => {
+        console.log(`${index + 1}. ${menu.nama} - Rp${menu.harga}`);
+      });
+      console.log("Silahkan masukkan angka 1-4 untuk memilih makanan.");
+
+      console.log("\n");
+
+      // Mencetak isi menu minuman
+      console.log("====== MINUMAN ======");
+      menuMinuman.forEach((menu, index) => {
+        console.log(`${index + 1}. ${menu.nama} - Rp${menu.harga}`);
+      });
+      console.log("Silahkan masukkan angka 1-5 untuk memilih minuman.");
+
+      // Meminta input nama pelanggan
+      namaPelanggan = prompt("Masukkan nama kamu: ");
+
+      // Memastikan apakah pelanggan ingin pesan atau tidak
+      pelangganInginPesan = prompt(
+        "Apakah kamu ingin memesan? Ya/tidak."
+      ).toLowerCase();
+
+      if (pelangganInginPesan === "ya") {
+        pelangganInginPesan = true;
+      } else if (pelangganInginPesan === "tidak") {
+        pelangganInginPesan = false;
+      } else {
+        console.log("Jawaban kamu tidak valid.");
+      }
+
+      if (pelangganInginPesan) {
+        while (pelangganMasihInginPesan) {
+          urutanMemesan = prompt(
+            "Mau pesan makanan dulu atau minuman dulu?"
+          ).toLowerCase();
+          if (urutanMemesan === "makanan") {
+            pesananPelanggan = parseInt(prompt("Masukkan pilihan pesanan: "));
+            jmlPesanan = parseInt(prompt("Masukkan jumlah pesanan: "));
+
+            switch (pesananPelanggan) {
+              case 1:
+                pesanan.push(menuMakanan[0]);
+                break;
+              case 2:
+                pesanan.push(menuMakanan[1]);
+                break;
+              case 3:
+                pesanan.push(menuMakanan[2]);
+                break;
+              case 4:
+                pesanan.push(menuMakanan[3]);
+                break;
+              default:
+                console.log("Pilihan kamu tidak valid.");
+                break;
+            }
+            // Menangkap jumlah pesanan pelanggan
+            switch (pesananPelanggan) {
+              case 1:
+                menuMakanan[0].jmlPesanan += jmlPesanan;
+                break;
+              case 2:
+                menuMakanan[1].jmlPesanan += jmlPesanan;
+                break;
+              case 3:
+                menuMakanan[2].jmlPesanan += jmlPesanan;
+                break;
+              case 4:
+                menuMakanan[3].jmlPesanan += jmlPesanan;
+                break;
+            }
+            pelangganMasihInginPesan = prompt(
+              "Masih ingin pesan? Ya/tidak"
+            ).toLowerCase();
+            pelangganMasihInginPesan =
+              pelangganMasihInginPesan === "ya" ? true : false;
+          } else if (urutanMemesan === "minuman") {
+            pesananPelanggan = parseInt(prompt("Masukkan pilihan pesanan: "));
+            jmlPesanan = parseInt(prompt("Masukkan jumlah pesanan: "));
+
+            // Menangkap jumlah pesanan pelanggan
+
+            switch (pesananPelanggan) {
+              case 1:
+                pesanan.push(menuMinuman[0]);
+                break;
+              case 2:
+                pesanan.push(menuMinuman[1]);
+                break;
+              case 3:
+                pesanan.push(menuMinuman[2]);
+                break;
+              case 4:
+                pesanan.push(menuMinuman[3]);
+                break;
+              case 5:
+                pesanan.push(menuMinuman[4]);
+                break;
+              default:
+                console.log("Pilihan kamu tidak valid.");
+                break;
+            }
+            switch (pesananPelanggan) {
+              case 1:
+                menuMinuman[0].jmlPesanan += jmlPesanan;
+                break;
+              case 2:
+                menuMinuman[1].jmlPesanan += jmlPesanan;
+                break;
+              case 3:
+                menuMinuman[2].jmlPesanan += jmlPesanan;
+                break;
+              case 4:
+                menuMinuman[3].jmlPesanan += jmlPesanan;
+                break;
+              case 5:
+                menuMinuman[4].jmlPesanan += jmlPesanan;
+                break;
+            }
+            pelangganMasihInginPesan = prompt(
+              "Masih ingin pesan? Ya/tidak"
+            ).toLowerCase();
+            pelangganMasihInginPesan =
+              pelangganMasihInginPesan === "ya" ? true : false;
+          }
+        }
+
+        console.log("\n");
+        console.log("====== PESANAN ======");
+        console.log(`Nama: ${namaPelanggan}`);
+        console.log("Pesanan: ");
+        pesanan.forEach((e, i) => {
+          console.log(
+            `${i + 1}. ${e.nama} - Rp${e.harga} - Jumlah Pesanan: ${
+              e.jmlPesanan
+            } \n`
+          );
+        });
+        pesanan.forEach((e) => {
+          totalHarga += e.harga * e.jmlPesanan;
+        });
+        console.log(`Total: Rp${totalHarga}`);
+
+        console.log("\n");
+        console.log("====== METODE PEMBAYARAN ======");
+        metodePembayaran.forEach((e, i) => {
+          console.log(`${i + 1}. ${e}`);
+        });
+        pilihanMetodePembayaran = parseInt(
+          prompt("Mau bayar pake metode apa? Masukkan angka yang sesuai ya!")
+        );
+        console.log("\n");
+        console.log("------ STRUK PESANAN ------");
+        console.log(`Nama: ${namaPelanggan}`);
+        console.log("Pesanan: ");
+        pesanan.forEach((e, i) => {
+          console.log(
+            `${i + 1}. ${e.nama} - Rp${e.harga} - Jumlah Pesanan: ${
+              e.jmlPesanan
+            } \n`
+          );
+        });
+        console.log(`Total: Rp${totalHarga}`);
+        console.log(
+          `Metode Pembayaran: ${metodePembayaran[pilihanMetodePembayaran - 1]}`
+        );
+        console.log("----------------------------");
+        console.log("\n");
+        console.log("Terima kasih sudah memesan! 😊🙏");
+      } else {
+        console.log("\n");
+        console.log(`Terima kasih telah berkunjung ${namaPelanggan} 😊🙏`);
+      }
+    </script>
+  </body>
+</html>
