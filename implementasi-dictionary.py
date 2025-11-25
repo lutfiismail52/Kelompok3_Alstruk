@@ -1,31 +1,16 @@
-from collections import deque
+# dictionary
 
-antrian = deque([1,2,3,4,5])
+member1 = {"ID":101,
+          "Nama":"Faqihza Mukhlish",
+          "Pekerjaan":"Mahasiswa",
+          "Status member":"Gold"
+          }
 
-print('data sekarang: ',antrian)
+member2 = {"ID":102,
+          "Nama":"Ujang Pintu",
+          "Pekerjaan":"reparasi pintu",
+          "Status member":"Berlian"}
 
-# menambahkan data
-antrian.append(6)
-print('data masuk: ',6)
-print('data sekarang: ',antrian)
+memberlist = {101:member1,102:member2}
 
-antrian.append(7)
-print('data masuk: ',7)
-print('data sekarang: ',antrian)
-
-# mengurangi antrian
-out = antrian.popleft()
-print('data keluar: ',out)
-print('data sekarang: ',antrian)
-
-out = antrian.popleft()
-print('data keluar: ',out)
-print('data sekarang: ',antrian)
-
-out = antrian.popleft()
-print('data keluar: ',out)
-print('data sekarang: ',antrian)
-
-antrian.append(8)
-print('data masuk: ',8)
-print('data sekarang: ',antrian)
+print(memberlist[101])
